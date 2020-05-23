@@ -16,7 +16,8 @@ export default class Toggle extends Component {
     const { isToggleOn } = this.state;
     return (
       <>
-        <h1>Toggle</h1>
+        <h1>Toggle {isToggleOn ? <span>ON</span> : <span>OFF</span>}</h1>
+        {isToggleOn && <h2>C'est OUVERT</h2>}
         <button onClick={this.handleClick}>{isToggleOn ? "ON" : "OFF"}</button>
       </>
     );
