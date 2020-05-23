@@ -6,6 +6,20 @@ export default class Welcome extends Component {
     this.state = { date: new Date() };
   }
 
+  componentDidMount() {
+    this.timerID = setInterval(() => this.tick(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date(),
+    });
+  }
+
   render() {
     const { name, clickHere } = this.props;
     const { date } = this.state;
