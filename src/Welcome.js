@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LocalTime from "./LocalTime";
 
 export default class Welcome extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class Welcome extends Component {
     return (
       <>
         <h1>Bonjour, {name}</h1>
-        <h2>Il est {date.toLocaleTimeString()}.</h2>
+        <LocalTime date={date} />
         <button className="btn" onClick={clickHere} type="button">
           Clique ICI
         </button>
