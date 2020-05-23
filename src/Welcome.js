@@ -1,14 +1,22 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 
 export default class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+
   render() {
+    const { name, clickHere } = this.props;
+    const { date } = this.state;
     return (
-      <Fragment>
-        <h1>Bonjour, {this.props.name}</h1>
-        <button className="btn" onClick={this.props.clickHere} type="button">
+      <>
+        <h1>Bonjour, {name}</h1>
+        <h2>Il est {date.toLocaleTimeString()}.</h2>
+        <button className="btn" onClick={clickHere} type="button">
           Clique ICI
         </button>
-      </Fragment>
+      </>
     );
   }
 }
