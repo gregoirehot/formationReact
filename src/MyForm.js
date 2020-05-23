@@ -3,16 +3,27 @@ import React, { Component } from "react";
 export default class MyForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: "" };
+    this.state = { input: "", text: "", select: "", check: false };
   }
 
-  handleChange = (event) => {
-    this.setState({ value: event.target.value });
-    console.log("handleChange", event.target.value);
+  handleInputChange = (event) => {
+    const target = event.target;
+    const value = target.name === 'check' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value,
+    });
   };
 
   handleSubmit = (event) => {
-    alert("Le nom est enregistré : " + this.state.value);
+    console.log(
+      "Enregistré : ",
+      this.state.input,
+      this.state.text,
+      this.state.select,
+      this.state.check
+    );
     event.preventDefault();
   };
 
@@ -22,9 +33,46 @@ export default class MyForm extends Component {
         <label>
           Nom :
           <input
+            name="input"
             type="text"
-            value={this.state.value}
-            onChange={this.handleChange}
+            value={this.state.input}
+            onChange={this.handleInputChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Text :
+          <textarea
+            name="text"
+            value={this.state.text}
+            onChange={this.handleInputChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Choisissez votre parfum favori :
+          <select
+            name="select"
+            value={this.state.select}
+            onChange={this.handleInputChange}
+          >
+            <option value="grapefruit">Pamplemousse</option>
+            <option value="lime">Citron vert</option>
+            <option value="coconut">Noix de coco</option>
+            <option value="mango">Mangue</option>
+          </select>
+        </label>
+        <br />
+        <br />
+        <label>
+          Check :
+          <input
+            name="check"
+            type="checkbox"
+            checked={this.state.check}
+            onChange={this.handleInputChange}
           />
         </label>
         <input type="submit" value="Envoyer" />
