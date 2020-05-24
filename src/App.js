@@ -1,25 +1,23 @@
 import React from "react";
 import "./App.css";
-import Welcome from "./Welcome";
-import Toggle from "./Toggle";
-import List from "./List";
-import MyForm from "./MyForm";
 import ApiFormGet from "./ApiFormGet";
 import ApiFormPost from "./ApiFormPost";
-
-const clickHere = (value) => {
-  console.log("clickHere", value);
-};
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import GetUser from "./GetUser";
+import Header from "./Header";
 
 function App() {
   return (
     <div className="App">
-      <Welcome name="Greg" clickHere={clickHere} />
-      <Toggle />
-      <List />
-      <MyForm />
-      <ApiFormGet />
-      <ApiFormPost />
+      <Router>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={ApiFormGet} />
+          <Route path="/addUser" component={ApiFormPost} />
+          <Route path="/getUser/:idUser" component={GetUser} />
+        </Switch>
+        {/* <Footer /> */}
+      </Router>
     </div>
   );
 }
