@@ -5,6 +5,7 @@ import Toggle from "./Toggle";
 import List from "./List";
 import MyForm from "./MyForm";
 import ApiFormGet from "./ApiFormGet";
+import ApiFormPost from "./ApiFormPost";
 
 const clickHere = (value) => {
   console.log("clickHere", value);
@@ -18,6 +19,7 @@ function App() {
       <List />
       <MyForm />
       <ApiFormGet />
+      <ApiFormPost />
     </div>
   );
 }
