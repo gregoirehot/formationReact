@@ -5,6 +5,7 @@ import ApiFormPost from "./ApiFormPost";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import GetUser from "./GetUser";
 import Header from "./Header";
+import ToggleHook from "./ToggleHook";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/addUser" component={ApiFormPost} />
           <Route path="/getUser/:idUser" component={GetUser} />
         </Switch>
+        <ToggleHook />
         {/* <Footer /> */}
       </Router>
     </div>
