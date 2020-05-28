@@ -8,6 +8,7 @@ import Header from "./Header";
 import Todo from "./Todo";
 import { AppContext, initialState, reducer } from "./store";
 import TodoBis from "./TodoBis";
+import FormHook from "./FormHook";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -24,6 +25,7 @@ function App() {
           </Switch>
           <Todo />
           <TodoBis />
+          <FormHook />
           {/* <Footer /> */}
         </Router>
       </div>
