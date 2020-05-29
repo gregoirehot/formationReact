@@ -1,7 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useReducer } from "react";
 
 export default function FormHook() {
-  const [name, setName] = useState(true);
+  const [userInput, setUserInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      firstName: "",
+      lastName: "",
+    }
+  );
   const [users, setUsers] = useState([]);
 
   const getUsers = useCallback(() => {
@@ -16,13 +22,16 @@ export default function FormHook() {
   }, [getUsers]);
 
   const handleChange = (event) => {
-    setName(event.target.value);
+    const name = event.target.name;
+    const newValue = event.target.value;
+    setUserInput({ [name]: newValue });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = {
-      name: name,
+      firstName: userInput.firstName,
+      lastName: userInput.lastName,
     };
 
     const usersStorage = window.localStorage.getItem("users")
@@ -39,14 +48,28 @@ export default function FormHook() {
         {users &&
           users.map((user, index) => (
             <li key={index}>
-              {user?.name} - {user?.username}
+              {user?.firstName} - {user?.lastName}
             </li>
           ))}
       </ul>
       <form onSubmit={handleSubmit}>
         <label>
-          Name:
-          <input type="text" name="name" onChange={handleChange} />
+          firstName :
+          <input
+            type="text"
+            name="firstName"
+            value={userInput.firstName}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          lastName :
+          <input
+            type="text"
+            name="lastName"
+            value={userInput.lastName}
+            onChange={handleChange}
+          />
         </label>
         <button type="submit">Ajouter</button>
       </form>
